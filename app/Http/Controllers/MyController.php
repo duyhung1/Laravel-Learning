@@ -36,7 +36,7 @@ class MyController extends Controller
             'KhoaHoc', 
             'Laravelaaaaaaa', 
              0.1);    // thoi gian song (phut)
-        //echo "da xet cookie";
+        //echo "da xet cookie";.
         return $response;
     }
     public function getCookie(Request $request) {
