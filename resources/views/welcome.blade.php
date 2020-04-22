@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -9,7 +9,7 @@
     <div class="col-md-12 text-center">
         <h1 class="post-title">Learning Laravel</h1>
         <p>This blog post will get you right on track with Laravel</p>
-        <p><a href="{{route('blog.post', ['id'=>1])}}">Read more...</a></p>
+        <p><a href="{{route('blog.readMore', ['id'=>1])}}">Read more...</a></p>
     </div>
 </div>
 <hr>
@@ -18,7 +18,7 @@
         <h1 class="post-title">The next steps</h1>
         <p>Understanding the Basics is great, but you need to be able to make 
             the next steps.</p>
-            <p><a href="{{route('blog.post', ['id'=>2])}}">Read more...</a></p>
+            <p><a href="{{route('blog.readMore', ['id'=>2])}}">Read more...</a></p>
     </div>
 </div>
 <hr>
@@ -28,7 +28,7 @@
         <p>The Laravel team released v7.2.0 this week with HTTP client 
             query string support and a new timeout configuration
              option for the SMTP mail driver.</p>
-             <p><a href="{{route('blog.post', ['id'=>3])}}">Read more..</a></p>
+             <p><a href="{{route('blog.readMore', ['id'=>3])}}">Read more..</a></p>
     </div>
 </div>
 <div class="row">

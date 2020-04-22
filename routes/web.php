@@ -14,82 +14,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', ['as'=>'index', 'uses'=>'MyController@index']);//as: dat ten (dinh danh) cho "/"
 
-Route::get('post/{id} ', function($id) {
-    if($id ==1){
-        $post = [
-            'title' => 'Learning Laravel',
-            'content' => 'this blog post will get you right on track with 
-            laravel!'
-        ];
-    }else{
-        $post =[
-            'title' => 'Something else',
-            'content' => 'some other content'
-        ];
-    }
-    //return $post['title'];
-    return view('blog.post', ['post'=>$post]);
-})->name('blog.post');
+Route::get('about',['as'=>'other.about', 'uses'=>'MyController@about']);
 
-Route::get('about', function() {
-    return view('other.about');
-})->name('other.about');
+Route::get('readmode/{id} ', ['as'=>'blog.readMore', 'uses'=>'MyController@readmore']);
 
 Route::group(["prefix"=>'admin'], function() {
-    Route::get('', function() {
-        return view('admin.index');
-    })->name('admin.index');  
+    Route::get('',['as'=>'admin.index', 'uses'=>'MyController@adminIndex']);
 
-    Route::get('create', function() {
-        return view('admin.create');
-    })->name('admin.create');
-    Route::post('create',function(\Illuminate\Http\Request $request, 
-\Illuminate\Validation\Factory $validator) {
-        $validation = $validator->make($request->all(),[
-            'title'=>'required|min:5',
-            'content'=>'required|min:10'
-        ]);
-        if($validation ->fails()){
-            return redirect()->back()->withErrors($validation);
-        }
-        return redirect()
-            ->route('admin.index')
-            ->with('info', 'Post created, Content: '.$request->input('content'));
-    })->name('admin.create');
+    Route::get('create', ['as'=>'admin.create', 'uses'=>'MyController@adminCreate']);
+    Route::post('create',['as'=>'admin.postcreate', 'uses'=>'MyController@checkCreate']);
 
-    Route::get('edit/{id}', function($id) {
-        if($id ==1){
-            $post = [
-                'title' => 'Learning Laravel',
-                'content' => 'this blog post will get you right on track with laravel!'
-            ];
-        }else{
-            $post =[
-                'title' => 'Something else',
-                'content' => 'some other content'
-            ];
-        }
-        return view('admin.edit', ['post'=>$post]);
-    })->name('admin.edit');
-    Route::post('edit',function(\Illuminate\Http\Request $request,
-\Illuminate\Validation\Factory $validator) {
-        $validation =$validator->make($request->all(),[
-            'title'=>'required|min:5',
-            'content'=>'required|min:10'
-        ]);
-        if($validation ->fails()){
-            return redirect()->back()->withErrors($validation);
-        }
-        return redirect()
-            ->route('admin.index')
-            ->with('info', 'Post edited, new Title: '.$request->input('title'));
-    })->name('admin.update');
+    Route::get('edit/{id}',['as'=>'admin.edit', 'uses'=>'MyController@adminEdit']);
+    Route::post('edit',['as'=>'admin.update', 'uses'=>'MyController@checkEdit']);
     
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 //----------------------------------Khoa Pham
 Route::get('goiten', function() {
     return redirect()->route('welcome'); //goi route theo dinh danh name
@@ -105,7 +50,8 @@ Route::post('postForm','MyController@postForm')->name('postForm');
 Route::get('setCookie','MyController@setCookie');
 Route::get('getCookie','MyController@getCookie');
 
+Route::get('time/{t}', 'MyController@time');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');

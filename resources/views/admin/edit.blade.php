@@ -12,7 +12,7 @@
                     class="form-control" 
                     id="title" 
                     name="title" 
-                    value=" {{$post['title'] }} ">
+                    value=" {{$edit['title'] }} ">
             </div>
             <div class="form-group">
                 <label for="content">Content</label>
@@ -21,7 +21,7 @@
                     class="form-control" 
                     id="content" 
                     name="content"
-                    value="{{$post['content'] }}">
+                    value="{{$edit['content'] }}">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
        </form>

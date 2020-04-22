@@ -3,11 +3,11 @@
 <div class="container" style="margin-top:30px">
   <div class="row">
     <div class="col-sm-4">
-      <p class="quote"> {{$post['title']}} </p>
+      <p class="quote"> {{$readmore['title']}} </p>
       <h2>About Me</h2>
       <h5>Photo of me:</h5>
       <div class="fakeimg">Fake Image</div>
-      <p> {{$post['content']}}</p>
+      <p> {{$readmore['content']}}</p>
       <h3>Some Links</h3>
       <p>Lorem ipsum dolor sit ame.</p>
       <ul class="nav nav-pills flex-column">
